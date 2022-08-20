@@ -5,7 +5,7 @@ import axios from 'axios'
 export class Pingpong extends Component {
     constructor(props){
         super(props)
-        this.state = {Playername: "", Opponentname: "", Server: "", playerScore: 0, opponentScore: 0, winner: "", Board: [], BoardShow: []}
+        this.state = {Playername: "", Opponentname: "", Server: "", playerScore: 0, opponentScore: 0, winner: ""}
         this.handleClick = this.handleClick.bind(this)
         this.handleClick2 = this.handleClick2.bind(this)
         this.changer = this.changer.bind(this)
@@ -57,13 +57,11 @@ export class Pingpong extends Component {
         axios.post("http://localhost:3001/user", this.state)
         .then(response =>
             {
-                this.setState({Board: response})
+                console.log(response)
             }
         )
     }
-    createBoard(){
-        
-    }
+
     render() {
         const {Playername, Opponentname, Server}  = this.state
         return (
@@ -89,7 +87,6 @@ export class Pingpong extends Component {
                 <div>
                     <button onClick={(this.changer)}>Reset</button>
                 </div>
-                <p>Leadership Board: {this.state.BoardShow} </p>
             </div>
         )
     }
